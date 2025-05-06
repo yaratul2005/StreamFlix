@@ -15,8 +15,8 @@
 
 ## 🌟 Featured Preview
 <div align="center">
-  <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1325&q=80" width="45%">
-  <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1497&q=80" width="45%">
+  <img src="https://raw.githubusercontent.com/yaratul2005/StreamFlix/refs/heads/main/public/20250506_155534.jpg&auto=format&fit=crop&w=1325&q=80" width="45%">
+  <img src="https://raw.githubusercontent.com/yaratul2005/StreamFlix/refs/heads/main/public/Screenshot_20250506_155511_Chrome.jpg&auto=format&fit=crop&w=1497&q=80" width="45%">
 </div>
 
 ## 📋 Overview
