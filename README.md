@@ -15,7 +15,7 @@
 
 ## 🌟 Featured Preview
 <div align="center">
-  <img src="https://raw.githubusercontent.com/yaratul2005/StreamFlix/refs/heads/main/public/20250506_155534.jpg&auto=format&fit=crop&w=1325&q=80" width="45%">
+  <img src="https://i.imgur.com/SXTW94x.jpeg&auto=format&fit=crop&w=1325&q=80" width="45%">
   <img src="https://raw.githubusercontent.com/yaratul2005/StreamFlix/refs/heads/main/public/Screenshot_20250506_155511_Chrome.jpg&auto=format&fit=crop&w=1497&q=80" width="45%">
 </div>
 
