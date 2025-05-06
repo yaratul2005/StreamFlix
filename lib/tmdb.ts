@@ -1,5 +1,5 @@
 // API key would normally be stored in environment variables
-const TMDB_API_KEY = "667911222fb9399f2d4bec7e5f4d548b" // User's TMDB API key
+const TMDB_API_KEY = "your-tmdb-api-key" // User's TMDB API key
 const TMDB_BASE_URL = "https://api.themoviedb.org/3"
 
 export async function fetchFromTMDB(endpoint: string, params: Record<string, string> = {}) {
