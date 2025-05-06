@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 99% 99%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 270 100% 50%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 270 100% 50%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 30% 5%;
+    --foreground: 0 0% 98%;
+    --card: 240 25% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 25% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 270 100% 50%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 25% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 25% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 25% 15%;
+    --input: 240 25% 15%;
+    --ring: 270 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-orbitron;
+  }
+}
+
+.glassmorphism {
+  @apply bg-background/80 backdrop-blur-md border border-border/50;
+}
+
+.media-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  transition-property: all;
+  transition-duration: 300ms;
+}
+
+.media-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(110, 0, 255, 0.2), 0 4px 6px -4px rgba(110, 0, 255, 0.2);
+}
+
+.media-card-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+
+.hero-gradient {
+  @apply bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px var(--primary);
+}
+
+.text-glow-secondary {
+  text-shadow: 0 0 10px var(--secondary);
+}
