@@ -1,213 +1,107 @@
-### 🎬 StreamFlix
+# 🎬 StreamFlix
 
-<div>
+<div align="center">
+  <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="StreamFlix Banner" width="100%">
+  
+  <p><em>✨ Premium Movie and TV Show Streaming Platform ✨</em></p>
 
-`<p>``<em>`Premium Movie and TV Show Streaming Platform`</em>``</p>`
+  <div>
+    <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js">
+    <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+    <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+    <img src="https://img.shields.io/badge/TMDB_API-01D277?style=for-the-badge&logo=themoviedatabase&logoColor=white" alt="TMDB API">
+  </div>
+</div>
 
-[
+## 🌟 Featured Preview
+<div align="center">
+  <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1325&q=80" width="45%">
+  <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1497&q=80" width="45%">
+</div>
 
-](https://nextjs.org/)
-[
-
-](https://www.typescriptlang.org/)
-[
-
-](https://tailwindcss.com/)
-[
-
-](https://www.themoviedb.org/documentation/api)
-
-</div>## 📋 Overview
+## 📋 Overview
 
 StreamFlix is a modern, responsive streaming platform built with Next.js that allows users to browse and watch movies and TV shows. It features a sleek UI, comprehensive search functionality, and integration with TMDB for metadata and VidSrc for streaming sources.
 
 ### ✨ Live Demo
 
-[View Live Demo](https://streamflix-demo.vercel.app) *(Replace with your actual deployment URL)*
+[![Live Demo](https://img.shields.io/badge/View-Live_Demo-FF5722?style=for-the-badge&logo=vercel&logoColor=white)](https://streamflix-demo.vercel.app)
 
 ## 🚀 Features
 
-- **🎭 Extensive Content Library** - Access thousands of movies and TV shows
-- **🔍 Advanced Search** - Find content by title, genre, or actor
-- **📱 Responsive Design** - Optimized for all devices from mobile to desktop
-- **🌓 Dark/Light Mode** - Choose your preferred theme
-- **📺 HD Streaming** - High-quality video playback
-- **📝 User Accounts** - Create accounts to track watch history and favorites
-- **📊 Content Details** - View comprehensive information about movies and shows
-- **🎬 Trailers & Previews** - Watch trailers before deciding what to watch
-- **📺 TV Show Episode Management** - Navigate seasons and episodes easily
-- **🔄 Similar Content Recommendations** - Discover related content
+<div align="center">
+  <table>
+    <tr>
+      <td><b>🎭 Extensive Library</b></td>
+      <td>Thousands of movies and TV shows</td>
+    </tr>
+    <tr>
+      <td><b>🔍 Advanced Search</b></td>
+      <td>Find content by title, genre, or actor</td>
+    </tr>
+    <tr>
+      <td><b>📱 Responsive Design</b></td>
+      <td>Optimized for all devices</td>
+    </tr>
+    <tr>
+      <td><b>🌓 Dark/Light Mode</b></td>
+      <td>Choose your preferred theme</td>
+    </tr>
+    <tr>
+      <td><b>📺 HD Streaming</b></td>
+      <td>High-quality video playback</td>
+    </tr>
+    <tr>
+      <td><b>📝 User Accounts</b></td>
+      <td>Track watch history and favorites</td>
+    </tr>
+  </table>
+</div>
 
+## 🛠️ Tech Stack
 
-## 🛠️ Technologies Used
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=nextjs,typescript,tailwind,vercel,react" width="80%">
+</div>
 
-- **Frontend**
-
+### Frontend
 - Next.js 13+ (App Router)
 - TypeScript
 - Tailwind CSS
 - Shadcn UI Components
 - Lucide React Icons
 
-
-
-- **APIs & Services**
-
+### APIs & Services
 - TMDB API (The Movie Database)
 - VidSrc API (Streaming Sources)
 
-
-
-- **Deployment**
-
-- Vercel
-
-
-
-
-
 ## 📸 Screenshots
 
-<div>
+<div align="center">
+  <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" width="30%">
+  <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" width="30%">
+  <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1459&q=80" width="30%">
+</div>
 
-
-
-
-
-
-
-</div>## 🚀 Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
-
 - Node.js 18.0 or later
 - TMDB API Key ([Get one here](https://www.themoviedb.org/settings/api))
 
-
 ### Installation
 
-1. **Clone the repository**
-
-
-```shellscript
+```bash
+# Clone the repository
 git clone https://github.com/yourusername/streamflix.git
 cd streamflix
-```
 
-2. **Install dependencies**
-
-
-```shellscript
+# Install dependencies
 npm install
-# or
-yarn install
-# or
-pnpm install
-```
 
-3. **Set up environment variables**
+# Set up environment variables
+echo "TMDB_API_KEY=your_tmdb_api_key_here" > .env.local
+echo "NEXT_PUBLIC_APP_URL=http://localhost:3000" >> .env.local
 
-
-Create a `.env.local` file in the root directory with the following:
-
-```plaintext
-TMDB_API_KEY=your_tmdb_api_key_here
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
-4. **Run the development server**
-
-
-```shellscript
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-5. **Open [http://localhost:3000](http://localhost:3000) in your browser**
-
-
-## 📁 Project Structure
-
-```plaintext
-streamflix/
-├── app/                    # Next.js App Router
-│   ├── api/                # API routes
-│   ├── [type]/[id]/        # Dynamic movie/TV show pages
-│   ├── tv/[id]/[season]/[episode]/ # TV episode pages
-│   ├── search/             # Search functionality
-│   ├── login/              # Authentication
-│   └── globals.css         # Global styles
-├── components/             # React components
-│   ├── ui/                 # UI components (shadcn)
-│   ├── enhanced-media-player.tsx # Video player
-│   ├── hero-slider.tsx     # Homepage hero section
-│   └── ...                 # Other components
-├── lib/                    # Utility functions
-│   ├── tmdb.ts             # TMDB API integration
-│   ├── vidsrc.ts           # VidSrc API integration
-│   └── utils.ts            # Helper functions
-├── types/                  # TypeScript type definitions
-├── public/                 # Static assets
-└── ...                     # Config files
-```
-
-## 🔌 API Integration
-
-### TMDB API
-
-StreamFlix uses the TMDB API to fetch movie and TV show metadata, including:
-
-- Trending content
-- Movie and TV show details
-- Cast and crew information
-- Similar content recommendations
-- Search functionality
-
-
-### VidSrc API
-
-The VidSrc API is used to source streaming content:
-
-- Movie streams
-- TV episode streams
-- Multiple source fallbacks
-
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-
-## ⚠️ Disclaimer
-
-This project is for educational purposes only. StreamFlix does not host any content. All streaming links are provided by VidSrc, which aggregates links from third-party sources. Please use this application responsibly and in accordance with your local laws regarding content streaming.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgements
-
-- [TMDB](https://www.themoviedb.org/) for their comprehensive movie and TV show database
-- [Next.js](https://nextjs.org/) for the amazing React framework
-- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
-- [Shadcn UI](https://ui.shadcn.com/) for the beautiful UI components
-- [Lucide React](https://lucide.dev/) for the icon set
-- [VidSrc](https://vidsrc.me/) for the streaming sources API
-
-
----
-
-<div>`<p>`Made with ❤️ by `<a href="https://github.com/yourusername">`Your Name`</a>``</p>`
-`<p>`© 2023 StreamFlix. All rights reserved.`</p>`
-
-</div>
