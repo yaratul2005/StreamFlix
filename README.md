@@ -25,7 +25,7 @@ StreamFlix is a modern, responsive streaming platform built with Next.js that al
 
 ### ✨ Live Demo
 
-[![Live Demo](https://img.shields.io/badge/View-Live_Demo-FF5722?style=for-the-badge&logo=vercel&logoColor=white)](https://streamflix-demo.vercel.app)
+[![Live Demo](https://img.shields.io/badge/View-Live_Demo-FF5722?style=for-the-badge&logo=vercel&logoColor=white)](https://v0-create-a-php-project.vercel.app/)
 
 ## 🚀 Features
 
