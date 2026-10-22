@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
 import { Toaster } from "@/components/ui/toaster"
 import { AuthProvider } from "@/components/auth-provider"
+import NavigationProgress from "@/components/navigation-progress"
+import { Suspense } from "react"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,6 +19,8 @@ const orbitron = Orbitron({
   variable: "--font-orbitron",
   weight: ["400", "500", "600", "700", "800", "900"],
 })
+
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "StreamFlix - Premium Movie Streaming Platform",
@@ -34,6 +38,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${orbitron.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <AuthProvider>
+            <Suspense fallback={null}>
+              <NavigationProgress />
+            </Suspense>
             <div className="flex min-h-screen flex-col">
               <Header />
               <main className="flex-1">{children}</main>

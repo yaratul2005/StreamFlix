@@ -1,8 +1,11 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Play, Star, Plus } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import type { MediaItem } from "@/types"
 
 interface MediaCardProps {
@@ -11,58 +14,74 @@ interface MediaCardProps {
 }
 
 export function MediaCard({ item, type }: MediaCardProps) {
-  const mediaType = item.media_type || type
-  const href = `/${mediaType === "all" ? item.media_type || "movie" : mediaType}/${item.id}`
+  const [loaded, setLoaded] = useState(false)
+  const resolvedType = item.media_type || (type === "all" ? "movie" : type)
+  const href = `/${resolvedType}/${item.id}`
+  const title = item.title || item.name || "Media"
+  const year = item.release_date?.split("-")[0] || item.first_air_date?.split("-")[0] || "Unknown"
 
   return (
     <div className="media-card group">
-      <div className="aspect-[2/3] relative overflow-hidden rounded-lg">
+      <Link
+        href={href}
+        prefetch
+        aria-label={`Watch ${title}`}
+        className="relative block aspect-[2/3] overflow-hidden rounded-lg bg-muted outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      >
+        {!loaded && <div className="shimmer absolute inset-0" aria-hidden="true" />}
         <Image
           src={
-            item.poster_path
-              ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
-              : "/placeholder.svg?height=450&width=300"
+            item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : "/placeholder.svg?height=450&width=300"
           }
-          alt={item.title || item.name || "Media"}
+          alt={title}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          onLoad={() => setLoaded(true)}
+          className={cn(
+            "object-cover transition-[transform,opacity] duration-500 ease-out group-hover:scale-110",
+            loaded ? "opacity-100" : "opacity-0",
+          )}
           sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
         />
 
         <div className="media-card-overlay">
-          <div className="space-y-2 w-full">
+          <div className="flex w-full flex-col gap-3">
             <div className="flex items-center justify-between">
               <Badge variant="outline" className="bg-background/50 backdrop-blur-sm">
-                {item.media_type === "tv" || type === "tv" ? "TV Show" : "Movie"}
+                {resolvedType === "tv" ? "TV Show" : "Movie"}
               </Badge>
-              <div className="flex items-center bg-background/50 backdrop-blur-sm rounded-md px-1.5 py-0.5 text-xs">
-                <Star className="h-3 w-3 text-yellow-500 fill-yellow-500 mr-1" />
+              <div className="flex items-center rounded-md bg-background/50 px-1.5 py-0.5 text-xs backdrop-blur-sm">
+                <Star className="mr-1 h-3 w-3 fill-yellow-500 text-yellow-500" aria-hidden="true" />
                 {item.vote_average?.toFixed(1)}
               </div>
             </div>
-
-            <div className="flex gap-2">
-              <Button asChild size="sm" className="w-full">
-                <Link href={href}>
-                  <Play className="h-4 w-4 mr-1" />
-                  Watch
-                </Link>
-              </Button>
-              <Button variant="outline" size="icon" className="h-8 w-8 bg-background/50 backdrop-blur-sm">
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
+            <span className="inline-flex h-9 w-full items-center justify-center gap-1 rounded-md bg-primary text-sm font-medium text-primary-foreground transition-transform duration-200 group-active:scale-95">
+              <Play className="h-4 w-4 fill-current" aria-hidden="true" />
+              Watch
+            </span>
           </div>
         </div>
-      </div>
+
+        <span
+          className="pointer-events-none absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 scale-50 items-center justify-center rounded-full bg-primary/90 text-primary-foreground opacity-0 shadow-lg transition-all duration-300 ease-out group-hover:scale-100 group-hover:opacity-100"
+          aria-hidden="true"
+        >
+          <Play className="ml-0.5 h-6 w-6 fill-current" />
+        </span>
+      </Link>
+
+      <button
+        type="button"
+        aria-label={`Add ${title} to watchlist`}
+        className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-md border border-border/60 bg-background/60 opacity-0 backdrop-blur-sm transition-all duration-200 hover:bg-primary hover:text-primary-foreground focus-visible:opacity-100 active:scale-90 group-hover:opacity-100"
+      >
+        <Plus className="h-4 w-4" aria-hidden="true" />
+      </button>
 
       <div className="mt-2">
-        <Link href={href} className="line-clamp-1 font-medium hover:text-primary transition-colors">
-          {item.title || item.name}
+        <Link href={href} className="line-clamp-1 font-medium transition-colors hover:text-primary">
+          {title}
         </Link>
-        <p className="text-xs text-muted-foreground">
-          {item.release_date?.split("-")[0] || item.first_air_date?.split("-")[0] || "Unknown"}
-        </p>
+        <p className="text-xs text-muted-foreground">{year}</p>
       </div>
     </div>
   )

@@ -1,16 +1,23 @@
-// API key would normally be stored in environment variables
-const TMDB_API_KEY = "your-tmdb-api-key" // User's TMDB API key
 const TMDB_BASE_URL = "https://api.themoviedb.org/3"
 
 export async function fetchFromTMDB(endpoint: string, params: Record<string, string> = {}) {
-  const queryParams = new URLSearchParams({
-    api_key: TMDB_API_KEY,
-    ...params,
-  })
+  const apiKey = process.env.TMDB_API_KEY?.trim()
+  if (!apiKey) {
+    throw new Error("TMDB_API_KEY environment variable is not set")
+  }
+
+  // TMDB issues two credentials: a short v3 "API Key" (query param) and a long
+  // v4 "API Read Access Token" (JWT, Bearer header). Accept either.
+  const isReadAccessToken = apiKey.startsWith("eyJ")
+
+  const queryParams = new URLSearchParams(isReadAccessToken ? params : { api_key: apiKey, ...params })
 
   const url = `${TMDB_BASE_URL}${endpoint}?${queryParams}`
 
-  const response = await fetch(url)
+  const response = await fetch(url, {
+    headers: isReadAccessToken ? { Authorization: `Bearer ${apiKey}`, accept: "application/json" } : undefined,
+    next: { revalidate: 3600 },
+  })
 
   if (!response.ok) {
     throw new Error(`TMDB API error: ${response.status}`)

@@ -70,29 +70,120 @@
   @apply bg-background/80 backdrop-blur-md border border-border/50;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .media-card {
   position: relative;
-  overflow: hidden;
   border-radius: var(--radius);
-  transition-property: all;
-  transition-duration: 300ms;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 300ms ease;
+  will-change: transform;
 }
 
 .media-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 15px -3px rgba(110, 0, 255, 0.2), 0 4px 6px -4px rgba(110, 0, 255, 0.2);
+  transform: translateY(-4px);
+}
+
+.media-card:hover > a:first-child {
+  box-shadow: 0 12px 24px -6px rgba(110, 0, 255, 0.35);
+}
+
+.media-card:active {
+  transform: translateY(-2px) scale(0.98);
 }
 
 .media-card-overlay {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4), transparent);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.35), transparent);
   opacity: 0;
-  transition-property: opacity;
-  transition-duration: 300ms;
+  transform: translateY(8px);
+  transition: opacity 300ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   align-items: flex-end;
   padding: 1rem;
+}
+
+.media-card:hover .media-card-overlay,
+.media-card:focus-within .media-card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  .media-card-overlay {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    100deg,
+    hsl(var(--muted)) 20%,
+    hsl(var(--muted-foreground) / 0.15) 40%,
+    hsl(var(--muted)) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buffer-slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
+
+.buffer-bar {
+  animation: buffer-slide 1.2s ease-in-out infinite;
+}
+
+.page-transition {
+  animation: page-in 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .hero-gradient {

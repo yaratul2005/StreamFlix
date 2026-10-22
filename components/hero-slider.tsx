@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Play, Info, Star } from "lucide-react"
@@ -15,78 +15,78 @@ interface HeroSliderProps {
 
 export default function HeroSlider({ items }: HeroSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
+  const [paused, setPaused] = useState(false)
+  const count = items.length
+
+  const goTo = useCallback((index: number) => setCurrentIndex(((index % count) + count) % count), [count])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide()
-    }, 8000)
+    if (paused || count < 2) return
+    const timeout = setTimeout(() => goTo(currentIndex + 1), 8000)
+    return () => clearTimeout(timeout)
+  }, [currentIndex, paused, count, goTo])
 
-    return () => clearInterval(interval)
-  }, [currentIndex])
-
-  const nextSlide = () => {
-    if (isAnimating) return
-    setIsAnimating(true)
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length)
-    setTimeout(() => setIsAnimating(false), 500)
-  }
-
-  const prevSlide = () => {
-    if (isAnimating) return
-    setIsAnimating(true)
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length)
-    setTimeout(() => setIsAnimating(false), 500)
-  }
-
-  if (!items.length) return null
+  if (!count) return null
 
   const currentItem = items[currentIndex]
+  const mediaType = currentItem.media_type || "movie"
 
   return (
-    <div className="relative h-[70vh] w-full overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 transition-opacity duration-700 ease-in-out">
-        <Image
-          src={`https://image.tmdb.org/t/p/original${currentItem.backdrop_path}`}
-          alt={currentItem.title || currentItem.name || ""}
-          fill
-          priority
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/10" />
-      </div>
+    <section
+      className="relative h-[70vh] w-full overflow-hidden"
+      aria-roledescription="carousel"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {items.map((item, index) => (
+        <div
+          key={item.id}
+          aria-hidden={index !== currentIndex}
+          className={cn(
+            "absolute inset-0 transition-[opacity,transform] duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            index === currentIndex ? "scale-100 opacity-100" : "scale-105 opacity-0",
+          )}
+        >
+          {item.backdrop_path && (
+            <Image
+              src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+              alt=""
+              fill
+              priority={index === 0}
+              className="object-cover object-center"
+            />
+          )}
+        </div>
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/10" />
 
-      {/* Content */}
-      <div className="container relative h-full flex flex-col justify-end pb-16 pt-32">
-        <div className="max-w-3xl space-y-4 animate-[fadeIn_0.5s_ease-in-out]">
-          <Badge variant="outline" className="border-primary text-primary">
-            {currentItem.media_type === "movie" ? "Movie" : "TV Show"}
+      <div className="container relative flex h-full flex-col justify-end pb-16 pt-32">
+        <div key={currentItem.id} className="flex max-w-3xl animate-[fadeIn_0.6s_ease-out] flex-col gap-4">
+          <Badge variant="outline" className="w-fit border-primary text-primary">
+            {mediaType === "movie" ? "Movie" : "TV Show"}
           </Badge>
 
-          <h1 className="text-4xl md:text-6xl font-bold font-orbitron text-glow">
-            {currentItem.title || currentItem.name}
-          </h1>
+          <h1 className="font-orbitron text-4xl font-bold text-glow md:text-6xl">{currentItem.title || currentItem.name}</h1>
 
           <div className="flex items-center gap-4 text-sm">
             <div className="flex items-center">
-              <Star className="h-4 w-4 text-yellow-500 mr-1 fill-yellow-500" />
+              <Star className="mr-1 h-4 w-4 fill-yellow-500 text-yellow-500" aria-hidden="true" />
               <span>{currentItem.vote_average?.toFixed(1)}</span>
             </div>
             <div>{currentItem.release_date?.split("-")[0] || currentItem.first_air_date?.split("-")[0]}</div>
           </div>
 
-          <p className="text-base md:text-lg text-muted-foreground line-clamp-3">{currentItem.overview}</p>
+          <p className="line-clamp-3 text-base text-muted-foreground md:text-lg">{currentItem.overview}</p>
 
           <div className="flex flex-wrap gap-3 pt-2">
-            <Button asChild size="lg" className="gap-2">
-              <Link href={`/${currentItem.media_type}/${currentItem.id}`}>
+            <Button asChild size="lg" className="gap-2 transition-transform active:scale-95">
+              <Link href={`/${mediaType}/${currentItem.id}`}>
                 <Play className="h-5 w-5" />
                 Watch Now
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="gap-2">
-              <Link href={`/${currentItem.media_type}/${currentItem.id}`}>
+            <Button asChild variant="outline" size="lg" className="gap-2 transition-transform active:scale-95">
+              <Link href={`/${mediaType}/${currentItem.id}`}>
                 <Info className="h-5 w-5" />
                 More Info
               </Link>
@@ -95,37 +95,40 @@ export default function HeroSlider({ items }: HeroSliderProps) {
         </div>
       </div>
 
-      {/* Navigation Buttons */}
       <Button
         variant="ghost"
         size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-background/20 hover:bg-background/40"
-        onClick={prevSlide}
+        aria-label="Previous slide"
+        className="absolute left-4 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-background/20 transition-all hover:bg-background/40 active:scale-90"
+        onClick={() => goTo(currentIndex - 1)}
       >
         <ChevronLeft className="h-8 w-8" />
       </Button>
       <Button
         variant="ghost"
         size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-background/20 hover:bg-background/40"
-        onClick={nextSlide}
+        aria-label="Next slide"
+        className="absolute right-4 top-1/2 h-12 w-12 -translate-y-1/2 rounded-full bg-background/20 transition-all hover:bg-background/40 active:scale-90"
+        onClick={() => goTo(currentIndex + 1)}
       >
         <ChevronRight className="h-8 w-8" />
       </Button>
 
-      {/* Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {items.map((_, index) => (
+      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+        {items.map((item, index) => (
           <button
-            key={index}
+            key={item.id}
+            type="button"
+            aria-label={`Go to slide ${index + 1}`}
+            aria-current={index === currentIndex}
             className={cn(
-              "h-1.5 rounded-full transition-all",
-              index === currentIndex ? "w-8 bg-primary" : "w-3 bg-muted",
+              "h-1.5 rounded-full transition-all duration-500 ease-out",
+              index === currentIndex ? "w-8 bg-primary" : "w-3 bg-muted hover:bg-muted-foreground",
             )}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => goTo(index)}
           />
         ))}
       </div>
-    </div>
+    </section>
   )
 }

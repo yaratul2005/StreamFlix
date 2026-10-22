@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MediaCard } from "@/components/media-card"
-import { searchContent } from "@/lib/tmdb"
 import type { MediaItem } from "@/types"
 
 export default function SearchPage() {
@@ -41,7 +40,9 @@ export default function SearchPage() {
 
     setIsLoading(true)
     try {
-      const data = await searchContent(searchQuery)
+      const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`)
+      if (!response.ok) throw new Error(`Search request failed: ${response.status}`)
+      const data = await response.json()
       // Filter out people and only keep movies and tv shows
       const filteredData = data.results.filter((item: any) => item.media_type === "movie" || item.media_type === "tv")
       setResults(filteredData)
