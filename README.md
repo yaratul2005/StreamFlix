@@ -1,7 +1,7 @@
 # 🎬 StreamFlix
 
 <div align="center">
-  <img src="https://i.imgur.com/IjWrvEI.png&auto=format&fit=crop&w=1470&q=80" alt="StreamFlix Banner" width="100%">
+  <img src="ss/front.png" alt="StreamFlix home screen banner" width="100%">
   
   <p><em>✨ Premium Movie and TV Show Streaming Platform ✨</em></p>
 
@@ -13,10 +13,23 @@
   </div>
 </div>
 
-## 🌟 Featured Preview
+## 📸 Screenshots
+
+The screenshots below are stored in the [`ss/`](ss/) folder.
+
 <div align="center">
-  <img src="https://i.imgur.com/SXTW94x.jpeg&auto=format&fit=crop&w=1325&q=80" width="45%">
-  <img src="https://i.imgur.com/w8fVU0i.jpeg&auto=format&fit=crop&w=1497&q=80" width="45%">
+  <figure>
+    <img src="ss/front.png" alt="StreamFlix home page" width="100%">
+    <figcaption>Home page</figcaption>
+  </figure>
+  <figure>
+    <img src="ss/login.png" alt="StreamFlix sign-in page" width="80%">
+    <figcaption>Sign in</figcaption>
+  </figure>
+  <figure>
+    <img src="ss/player.png" alt="StreamFlix video player" width="100%">
+    <figcaption>Video player</figcaption>
+  </figure>
 </div>
 
 ## 📋 Overview
@@ -75,13 +88,14 @@ StreamFlix is a modern, responsive streaming platform built with Next.js that al
 - TMDB API (The Movie Database)
 - VidSrc API (Streaming Sources)
 
-## 📸 Screenshots
+## 🧩 Open-source projects
 
-<div align="center">
-  <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" width="30%">
-  <img src="https://images.unsplash.com/photo-1535016120720-40c646be5580?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" width="30%">
-  <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1459&q=80" width="30%">
-</div>
+StreamFlix is built with these open-source projects:
+
+- [Next.js](https://github.com/vercel/next.js)
+- [React](https://github.com/facebook/react) and [TypeScript](https://github.com/microsoft/TypeScript)
+- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
+- [shadcn/ui](https://github.com/shadcn-ui/ui) and [Lucide](https://github.com/lucide-icons/lucide)
 
 ## 🚀 Getting Started
 
@@ -93,8 +107,8 @@ StreamFlix is a modern, responsive streaming platform built with Next.js that al
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/streamflix.git
-cd streamflix
+git clone https://github.com/yaratul2005/StreamFlix.git
+cd StreamFlix
 
 # Install dependencies
 npm install
@@ -105,3 +119,5 @@ echo "NEXT_PUBLIC_APP_URL=http://localhost:3000" >> .env.local
 
 # Run the development server
 npm run dev
+```
+
